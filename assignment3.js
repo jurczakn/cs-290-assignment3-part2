@@ -24,7 +24,7 @@ function listGists(gList){
 
 	var k;
 
-	for (k = 0; k < languages.size; k++){
+	for (k = 0; k < languages.length; k++){
 
 		if (languages[k].checked){
 
@@ -45,9 +45,9 @@ function listGists(gList){
 
 		else {
 
-			for (var j = 0; j < languages.size; j++){
+			for (var j = 0; j < languages.length; j++){
 
-				if(languages[i].checked && gList[i].contains(languages[i].value)){
+				if(languages[j].checked && gList[i].files.hasOwnProperty(languages[j].value)){
 
 				addGist(resLis, gList[i]);
 
