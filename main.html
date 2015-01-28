@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>cs290-assignment 3: part 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="search">
+    <input type="checkbox" name="language" value="Python"> Python <br>
+    <input type="checkbox" name="language" value="JavaScript"> Javascript<br>
+    <input type="checkbox" name="language" value="JSON"> JSON<br>
+    <input type="checkbox" name="language" value="SQL"> SQL<br>
+    <input type="checkbox" name="language" value="HTML"> HTML<br>
+    <input id="pages" type="number name="pages" min="1" max="5"> Pages<br>
+    <button onclick='getGists()'>Search</button>
+    <ul id="searchResults">
+    </ul>
+  </div>
+  <div id="favorites"></div>
+  <script src="assignment3.js"></script>
+  </body>
+</html>
