@@ -7,11 +7,27 @@ function addGist(list, g){
 
 	lnk.href = g.html_url;
 
-	lnk.text = g.description;
+	lnk.text = g.description + ":";
+
+	var favBut = document.createElement("BUTTON");
+
+	favBut.type = "button";
+
+	favBut.textContent = "ADD FAVORITE";
 
 	dt.appendChild(lnk);
 
+	dt.appendChild(favBut);
+
 	list.appendChild(dt);
+
+	favBut.addEventListener('click', function(){
+
+		lnk.parentNode.removeChild(lnk);
+
+		favBut.parentNode.removeChild(favBut);
+	});
+
 };
 
 function listGists(gList){
