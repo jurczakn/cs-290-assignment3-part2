@@ -69,14 +69,6 @@ function listGists(gList){
 
 function getGists () {
 
-	var reg = new XMLHttpRequest();
-	
-	if(!reg){
-
-		throw 'Unable to create HttpRequest.';
-
-	}
-
 	var baseurl = 'https://api.github.com/gists';
 
 
@@ -84,6 +76,15 @@ function getGists () {
 	var pages = document.getElementById("pages").value;
 
 	for(var i = 1; i <= pages; i++){
+
+		var reg = new XMLHttpRequest();
+	
+			if(!reg){
+
+				throw 'Unable to create HttpRequest.';
+
+			}
+
 
 		var url = baseurl + '?page=' + i + '&per_page=30';
 	
