@@ -47,10 +47,15 @@ function listGists(gList){
 
 			for (var j = 0; j < languages.length; j++){
 
-				if(languages[j].checked && gList[i].files.hasOwnProperty(languages[j].value)){
+				if(languages[j].checked){
 
-				addGist(resLis, gList[i]);
+					for (var file in gList[i].files) {
 
+						if (gList[i].files[file].language == languages[j].value){
+
+							addGist(resLis, gList[i]);
+						}
+					}
 				}
 
 			}
