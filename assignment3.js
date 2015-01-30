@@ -1,4 +1,29 @@
 
+function favorited(lnk){
+
+	var favList = JSON.parse(localStorage.getItem('userFavorites'));
+	
+	for (var k = 0; k < favList.favorites.length; k++){
+
+		if (favList.favorites[k].link == lnk.html_url){
+
+			return true;
+
+		}
+	}
+	
+	return false;
+
+};
+
+function fav(lnk){
+
+	this.link = lnk.href;
+
+	this.desc = lnk.text;
+
+};
+
 function addGist(list, g){
 
 	var dt = document.createElement('dt');
@@ -22,6 +47,12 @@ function addGist(list, g){
 	list.appendChild(dt);
 
 	favBut.addEventListener('click', function(){
+
+		var favList = JSON.parse(localStorage.getItem('userFavorites'));
+
+		favList.favorites.push(new fav(lnk));
+
+		localStorage.setItem('userFavorites', JSON.stringify(favList));
 
 		lnk.parentNode.removeChild(lnk);
 
@@ -54,12 +85,12 @@ function listGists(gList){
 
 	for (i = 0; i < gList.length; i++){
 
-		if (langTot == 0){
+		if (langTot == 0 && !favorited(gList[i])){
 
 			addGist(resLis, gList[i]);
 		}
 
-		else {
+		else if(!favorited(gList[i])) {
 
 			for (var j = 0; j < languages.length; j++){
 
@@ -126,7 +157,15 @@ function getGists () {
 
 
 window.onload = function () {
+	
+	var favoritesList = localStorage.getItem('userFavorites');
 
+	if (favoritesList == null){
+
+		favoritesList = {'favorites':[]};
+
+		localStorage.setItem('userFavorites', JSON.stringify(favoritesList));
+	}
 
 };
 
