@@ -19,7 +19,7 @@ function listFavs(){
 
 		lnk.href = favList.favorites[i].link;
 
-		lnk.text = favList.favorites[i].desc + ":";
+		lnk.text = favList.favorites[i].desc;
 
 		var remBut = document.createElement("BUTTON");
 
@@ -87,7 +87,13 @@ function addGist(list, g){
 
 	lnk.href = g.html_url;
 
-	lnk.text = g.description + ":";
+	lnk.text = g.description;
+
+	if (lnk.text == ""){
+
+		lnk.text = "No description";
+
+	}
 
 	var favBut = document.createElement("BUTTON");
 
@@ -176,9 +182,20 @@ function getGists () {
 
 	var baseurl = 'https://api.github.com/gists';
 
+	var resLis = document.getElementById("searchResults");
 
+	while (resLis.firstChild){
+
+		resLis.removeChild(resLis.firstChild);
+	}
 
 	var pages = document.getElementById("pages").value;
+
+	if(pages > 5){
+
+		pages = 5;
+
+	}
 
 	for(var i = 1; i <= pages; i++){
 
