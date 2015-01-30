@@ -5,11 +5,11 @@ function listFavs(){
 
 	var list = document.getElementById("favorites");
 
-	//while (list.firstChild){
+	while (list.firstChild){
 
-		//list.removeChild(list.firstChild);
+		list.removeChild(list.firstChild);
 
-	//}
+	}
 
 	for (var i = 0; i < favList.favorites.length; i++){
 
@@ -32,6 +32,22 @@ function listFavs(){
 		dt.appendChild(remBut);
 
 		list.appendChild(dt);
+
+		remBut.addEventListener('click', function(){
+
+			for (var k = 0; k < favList.favorites.length; k++){
+				if (favList.favorites[k].link == this.previousSibling.href){
+
+					favList.favorites.splice(k, 1);
+
+				}
+			}
+
+			localStorage.setItem('userFavorites', JSON.stringify(favList));
+
+			listFavs();
+
+		});
 
 
 	}
@@ -96,6 +112,8 @@ function addGist(list, g){
 		lnk.parentNode.removeChild(lnk);
 
 		favBut.parentNode.removeChild(favBut);
+
+		listFavs();
 	});
 
 };
