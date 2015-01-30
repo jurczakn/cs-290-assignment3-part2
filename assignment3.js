@@ -1,4 +1,43 @@
 
+function listFavs(){
+
+	var favList = JSON.parse(localStorage.getItem('userFavorites'));
+
+	var list = document.getElementById("favorites");
+
+	//while (list.firstChild){
+
+		//list.removeChild(list.firstChild);
+
+	//}
+
+	for (var i = 0; i < favList.favorites.length; i++){
+
+		var dt = document.createElement('dt');
+
+		var lnk = document.createElement('A');
+
+		lnk.href = favList.favorites[i].link;
+
+		lnk.text = favList.favorites[i].desc + ":";
+
+		var remBut = document.createElement("BUTTON");
+
+		remBut.type = "button";
+
+		remBut.textContent = "REMOVE";
+
+		dt.appendChild(lnk);
+
+		dt.appendChild(remBut);
+
+		list.appendChild(dt);
+
+
+	}
+
+};
+
 function favorited(lnk){
 
 	var favList = JSON.parse(localStorage.getItem('userFavorites'));
@@ -102,13 +141,14 @@ function listGists(gList){
 
 							addGist(resLis, gList[i]);
 						}
+
 					}
+
 				}
 
 			}
 
 		}
-
 
 	}
 
@@ -166,6 +206,8 @@ window.onload = function () {
 
 		localStorage.setItem('userFavorites', JSON.stringify(favoritesList));
 	}
+
+	listFavs();
 
 };
 
